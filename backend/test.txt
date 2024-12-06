@@ -1,0 +1,108 @@
+const express = require("express");
+const app = express();
+const bookRouter =require('./routes/book_routes')
+app.use(express.json)
+
+
+app.use("/",bookRouter)
+
+const books = [{"id":1,"title":"Express js ","price":20},
+    {"id":2,"title":"JAVA ","price":14},
+    {"id":3,"title":"AI ","price":30}]
+
+
+
+app.get("/books",(req,res)=>{
+    if(req.query.q){
+        const search = books.filter(b=>b.title.includes(req.query.q))
+        res.json({search})
+    }
+   else{
+    res.json({books})
+   }
+})
+
+
+app.get("/books/:id",(req,res)=>{
+   const book = books.find(b=>b.id==req.params.id)
+    res.json({"book":book});
+})
+
+app.post("/books",(req,res)=>{
+    //const book = {};
+    //book.title = req.body.title
+    //book.price = req.body.price
+    const book = req.body
+    book.id = books[books.length-1].id+1
+    books.push(book)
+    res.send("The book is added")
+})
+
+app.patch("/books/:id",(req,res)=>{
+    const index = books.findIndex(b=>b.id==req.params.id)
+    books[index].title=req.body.title;
+    books[index].price=req.body.price;
+    res.send("the book is updated");
+
+})
+app.delete("/books/:id",(req,res)=>{
+    const index = books.findIndex(b=>b.id==req.params.id)
+    books.splice(index,1);
+    res.send("the book is deleted");
+
+})
+const express = require("express");
+const app = express();
+const bookRouter =require('./routes/book_routes')
+app.use(express.json)
+
+
+app.use("/",bookRouter)
+
+const books = [{"id":1,"title":"Express js ","price":20},
+    {"id":2,"title":"JAVA ","price":14},
+    {"id":3,"title":"AI ","price":30}]
+
+
+
+app.get("/books",(req,res)=>{
+    if(req.query.q){
+        const search = books.filter(b=>b.title.includes(req.query.q))
+        res.json({search})
+    }
+   else{
+    res.json({books})
+   }
+})
+
+
+app.get("/books/:id",(req,res)=>{
+   const book = books.find(b=>b.id==req.params.id)
+    res.json({"book":book});
+})
+
+app.post("/books",(req,res)=>{
+    //const book = {};
+    //book.title = req.body.title
+    //book.price = req.body.price
+    const book = req.body
+    book.id = books[books.length-1].id+1
+    books.push(book)
+    res.send("The book is added")
+})
+
+app.patch("/books/:id",(req,res)=>{
+    const index = books.findIndex(b=>b.id==req.params.id)
+    books[index].title=req.body.title;
+    books[index].price=req.body.price;
+    res.send("the book is updated");
+
+})
+app.delete("/books/:id",(req,res)=>{
+    const index = books.findIndex(b=>b.id==req.params.id)
+    books.splice(index,1);
+    res.send("the book is deleted");
+
+})
+app.listen(9090)
+

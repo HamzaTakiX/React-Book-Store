@@ -1,0 +1,136 @@
+.navbar {
+  background: linear-gradient(135deg, #6366F1, #4F46E5);
+  padding: 1rem;
+  box-shadow: 0 2px 10px rgba(99, 102, 241, 0.2);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-logo-icon {
+  font-size: 1.8rem;
+  transition: transform 0.3s ease;
+}
+
+.nav-logo:hover {
+  color: #818CF8;
+}
+
+.nav-logo:hover .nav-logo-icon {
+  transform: rotate(-10deg);
+}
+
+.nav-logo-icon.bounce {
+  animation: bounceIcon 1s ease;
+}
+
+@keyframes bounceIcon {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px) rotate(-10deg);
+  }
+  60% {
+    transform: translateY(-5px) rotate(5deg);
+  }
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-button {
+  background: transparent;
+  border: 2px solid #818CF8;
+  color: #fff;
+  padding: 0.5rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-button:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  background: #818CF8;
+  border-radius: 50%;
+  transition: width 0.3s ease, height 0.3s ease;
+  z-index: -1;
+}
+
+.nav-button:hover {
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+}
+
+.nav-button:hover:before {
+  width: 200%;
+  height: 200%;
+}
+
+.nav-button.active {
+  background: #6366F1;
+  border-color: #6366F1;
+}
+
+/* Animation for navbar on scroll */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.navbar-scrolled {
+  animation: slideDown 0.5s ease forwards;
+  background: rgba(99, 102, 241, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-links {
+    gap: 1rem;
+  }
+  
+  .nav-button {
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+  }
+}
